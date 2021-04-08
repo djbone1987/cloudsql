@@ -31,9 +31,9 @@ const knex = connect();
 function connect () {
   // [START connect]
   const config = {
-      user: process.env.SQL_USER,
-      password: process.env.SQL_PASSWORD,
-      database: process.env.SQL_DATABASE,
+      user: "svc_lpsync",
+      password: "LP@Sync2020!",
+      database: "lpsync_db"
       // ssl: {
       //     ca: fs.readFileSync('ssl/server-ca.pem'),
       //     key: fs.readFileSync('ssl/client-key.pem'),
@@ -43,12 +43,12 @@ function connect () {
       // ssl_verify_server_cert: true
   };
 
-  if (process.env.INSTANCE_CONNECTION_NAME && process.env.NODE_ENV === 'production') {
-    config.socketPath = `/cloudsql/${process.env.INSTANCE_CONNECTION_NAME}`;
-  }  
-  if (process.env.NODE_ENV === 'dev') {
-    config.host = '35.226.111.174';
-  }
+  //if (process.env.INSTANCE_CONNECTION_NAME && process.env.NODE_ENV === 'production') {
+    config.socketPath = `/cloudsql/lpsync:us-central1:lpsync-db`;
+ // }
+  //if (process.env.NODE_ENV === 'dev') {
+    //config.host = '35.226.111.174';
+  //}
 
   // Connect to the database
   const knex = Knex({
